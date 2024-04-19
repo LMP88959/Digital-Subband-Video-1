@@ -165,3 +165,41 @@ YouTube: https://www.youtube.com/@EMMIR_KC/videos
 Discord: https://discord.gg/hdYctSmyQJ
 
 itch.io: https://kingscrook.itch.io/kings-crook
+
+------
+## Example videos:
+
+All videos are encoded at 30fps with a GOP length of 12.
+
+MPEG-2 at 1100kbps (created using ```ffmpeg -s 352x288 -r 30 -i bus_cif.yuv -g 12 -b:v 1100000 -vcodec mpeg2video bus1100kbps.mpeg```) converted to MP4+H264 to be embeddable in the README.
+
+https://github.com/LMP88959/Digital-Subband-Video-1/assets/109979235/e3b27f2c-4f55-4ec7-8795-411923414f83
+
+
+
+DSV1 at 1100kbps (created using ```./dsv1 e -y -v -inp_bus_cif.yuv -out_saved.dsv -gop12 -w352 -h288 -fps_num30 -qp85 -kbps1100```) converted to MP4+H264 to be embeddable in the README.
+
+https://github.com/LMP88959/Digital-Subband-Video-1/assets/109979235/86889d5a-121f-429f-938e-fe988489f389
+
+
+MPEG-2 at 1100kbps (created using ```ffmpeg -s 352x288 -r 30 -i stefan_cif.yuv -g 12 -b:v 1100000 -vcodec mpeg2video stef1100kbps.mpeg```) converted to MP4+H264 to be embeddable in the README.
+
+https://github.com/LMP88959/Digital-Subband-Video-1/assets/109979235/4c682fa3-73cd-4c2f-942a-2bdc87e098e3
+
+
+DSV1 at 1100kbps (created using ```./dsv1 e -y -v -inp_stefan_cif.yuv -out_saved.dsv -gop12 -w352 -h288 -fps_num30 -qp85 -kbps1100```) converted to MP4+H264 to be embeddable in the README.
+
+https://github.com/LMP88959/Digital-Subband-Video-1/assets/109979235/60f78ad2-2d5a-4434-b8c4-ff1b8cb9177d
+
+
+MPEG-2 at 1100kbps (created using ```ffmpeg -s 352x288 -r 30 -i husky_cif.yuv -g 12 -b:v 1100000 -vcodec mpeg2video husky1100kbps.mpeg```) converted to MP4+H264 to be embeddable in the README.
+
+
+https://github.com/LMP88959/Digital-Subband-Video-1/assets/109979235/cc83d156-722d-4672-8df0-0bf36532b3cc
+
+
+DSV1 at 1100kbps (created using ```./dsv1 e -y -v -inp_husky_cif.yuv -out_saved.dsv -gop12 -w352 -h288 -fps_num30 -qp85 -kbps1100```) converted to MP4+H264 to be embeddable in the README.
+
+
+https://github.com/LMP88959/Digital-Subband-Video-1/assets/109979235/df4509f1-60dc-4a55-b362-76c426819765
+
