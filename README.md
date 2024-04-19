@@ -98,7 +98,7 @@ sample usage: ./dsv1 -inp_video.yuv -out_compressed.dsv -w352 -h288 -fps_num24 -
               [min = 1, max = 2047]
         -minqp : minimum quality percent. 1 = default
               [min = 0, max = 100]
-        -maxqp : maximum quality percent. 95 = default
+        -maxqp : maximum quality percent. 100 = default
               [min = 0, max = 100]
         -minqp_I : minimum quality percent for intra frames. 5 = default
               [min = 0, max = 100]
