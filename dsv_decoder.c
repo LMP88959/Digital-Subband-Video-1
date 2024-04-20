@@ -290,7 +290,6 @@ dsv_dec(DSV_DECODER *d, DSV_BUF *buffer, DSV_FRAME **out, DSV_FNUM *fn)
     DSV_IMAGE *img;
     DSV_PARAMS *p;
     int c, quant, is_ref, pkt_type, subsamp;
-    int xf_width, xf_height;
     DSV_META *meta = &d->vidmeta;
     DSV_FRAME *residual;
     DSV_MV *mvs = NULL;
@@ -337,8 +336,6 @@ dsv_dec(DSV_DECODER *d, DSV_BUF *buffer, DSV_FRAME **out, DSV_FNUM *fn)
     img->params.vidmeta = meta;
     
     subsamp = meta->subsamp;
-
-    dsv_get_xf_dims(meta, &xf_width, &xf_height);
         
     p = &img->params;
     
@@ -368,7 +365,7 @@ dsv_dec(DSV_DECODER *d, DSV_BUF *buffer, DSV_FRAME **out, DSV_FNUM *fn)
         mvs = dsv_alloc(sizeof(DSV_MV) * p->nblocks_h * p->nblocks_v);
         decode_motion(img, mvs, &bs, buffer);
     }
-    residual = dsv_mk_frame(subsamp, xf_width, xf_height, 1);
+    residual = dsv_mk_frame(subsamp, meta->width, meta->height, 1);
     
     /* B.2.3.3 Image Data */
     dsv_bs_align(&bs);
@@ -389,9 +386,14 @@ dsv_dec(DSV_DECODER *d, DSV_BUF *buffer, DSV_FRAME **out, DSV_FNUM *fn)
         plen = dsv_bs_get_bits(&bs, 32);
         
         dsv_bs_align(&bs);
-        
-        coefs.width = residual->planes[c].w;
-        coefs.height = residual->planes[c].h;
+        if (c > 0) {
+            coefs.width = DSV_ROUND_POW2(residual->planes[c].w, 1);
+            coefs.height = DSV_ROUND_POW2(residual->planes[c].h, 1);
+        } else {
+            coefs.width = residual->planes[c].w;
+            coefs.height = residual->planes[c].h;
+        }
+
         framesz = coefs.width * coefs.height * sizeof(int);        
         if (plen <= 0 || plen > (framesz * 2)) {
             DSV_ERROR(("plane length was strange: %d", plen));
