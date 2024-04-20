@@ -467,7 +467,7 @@ encode_picture(DSV_ENCODER *enc, DSV_ENCDATA *d, DSV_BUF *output_buf)
     unsigned upperbound;
     DSV_STABILITY stab;
     DSV_COEFS coefs[3];
-    int i, width, height, xf_width, xf_height;
+    int i, width, height;
     
     width = enc->vidmeta.width;
     height = enc->vidmeta.height;
@@ -516,8 +516,7 @@ encode_picture(DSV_ENCODER *enc, DSV_ENCDATA *d, DSV_BUF *output_buf)
     stab.stable_blocks = enc->stable_blocks;
     stab.isP = d->isP;
     dsv_bs_put_bits(&bs, DSV_MAX_QP_BITS, d->quant);
-    dsv_get_xf_dims(&enc->vidmeta, &xf_width, &xf_height);
-    dsv_mk_coefs(coefs, enc->vidmeta.subsamp, xf_width, xf_height);
+    dsv_mk_coefs(coefs, enc->vidmeta.subsamp, width, height);
 
     for (i = 0; i < 3; i++) {
         stab.cur_plane = i;
@@ -782,7 +781,7 @@ extern int
 dsv_enc(DSV_ENCODER *enc, DSV_FRAME *frame, DSV_BUF *bufs)
 {
     DSV_ENCDATA *d;
-    int w, h, xf_width, xf_height;
+    int w, h;
     int nbuf = 0;
     DSV_BUF outbuf;
 
@@ -794,10 +793,9 @@ dsv_enc(DSV_ENCODER *enc, DSV_FRAME *frame, DSV_BUF *bufs)
     
     d->refcount = 1;
     
-    dsv_get_xf_dims(&enc->vidmeta, &xf_width, &xf_height);
-    d->xf_frame = dsv_mk_frame(enc->vidmeta.subsamp, xf_width, xf_height, 1);
     w = enc->vidmeta.width;
     h = enc->vidmeta.height;
+    d->xf_frame = dsv_mk_frame(enc->vidmeta.subsamp, w, h, 1);
     d->residual = dsv_mk_frame(enc->vidmeta.subsamp, w, h, 1);
     
     d->input_frame = frame;

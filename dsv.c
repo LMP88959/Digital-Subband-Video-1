@@ -38,13 +38,6 @@ dsv_get_log_level(void)
     return lvl;
 }
 
-extern void
-dsv_get_xf_dims(DSV_META *fmt, int *w, int *h)
-{
-    *w = DSV_ROUND_POW2(fmt->width, 2);
-    *h = DSV_ROUND_POW2(fmt->height, 2);
-}
-
 #if DSV_MEMORY_STATS
 static unsigned allocated = 0;
 static unsigned freed = 0;

@@ -574,37 +574,42 @@ inv(DSV_SBC *src, DSV_SBC *dst, int width, int height, int lvl, int hqp, int isI
 }
 
 static void
-p2int(DSV_SBC *d, DSV_PLANE *p)
+p2sbc(DSV_COEFS *dc, DSV_PLANE *p)
 {
-    int x, y, w, h;
-    w = p->w;
+    int x, y, h;
+    DSV_SBC *d;
+    
+    d = dc->data;
     h = p->h;
     for (y = 0; y < h; y++) {
         uint8_t *line = DSV_GET_LINE(p, y);
-        for (x = 0; x < w; x++) {
+        for (x = 0; x < dc->width; x++) {
             /* subtract 128 to center plane around zero */
             d[x] = line[x] - 128;
         }
-        d += w;
+        d += dc->width;
     }
 }
 
 /* C.3.3 Subband Recomposition */
 static void
-int2p(DSV_PLANE *p, DSV_SBC *d)
+sbc2int(DSV_PLANE *p, DSV_COEFS *dc)
 {
     int x, y, w, h;
+    DSV_SBC *d;
     DSV_SBC v;
     
+    d = dc->data;
     w = p->w;
     h = p->h;
+
     for (y = 0; y < h; y++) {
         uint8_t *line = DSV_GET_LINE(p, y);
         for (x = 0; x < w; x++) {
             v = (d[x] + 128);
             line[x] = v > 255 ? 255 : v < 0 ? 0 : v;
         }
-        d += w;
+        d += dc->width;
     }
 }
 
@@ -626,13 +631,14 @@ extern void
 dsv_fwd_sbt(DSV_PLANE *src, DSV_COEFS *dst, int isP)
 {
     int lvls, i;
-    int w = src->w;
-    int h = src->h;
+    int w = dst->width;
+    int h = dst->height;
     DSV_SBC *temp_buf_pad;
+
+    p2sbc(dst, src);
     
-    p2int(dst->data, src);
     lvls = nlevels(w, h);
-    
+
     alloc_temp((w + 2) * (h + 2));
     temp_buf_pad = temp_buf + w;
     for (i = 1; i <= lvls; i++) {
@@ -649,11 +655,12 @@ extern void
 dsv_inv_sbt(DSV_PLANE *dst, DSV_COEFS *src, int q, int isP, int c)
 {
     int lvls, i;
-    int w = dst->w;
-    int h = dst->h;
+    int w = src->width;
+    int h = src->height;
     DSV_SBC *temp_buf_pad;
-    
+
     lvls = nlevels(w, h);
+
     alloc_temp((w + 2) * (h + 2));
 
     temp_buf_pad = temp_buf + w;
@@ -703,5 +710,5 @@ dsv_inv_sbt(DSV_PLANE *dst, DSV_COEFS *src, int q, int isP, int c)
         }
     }
 
-    int2p(dst, src->data);
+    sbc2int(dst, src);
 }
