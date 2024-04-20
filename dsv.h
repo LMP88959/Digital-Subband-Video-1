@@ -192,8 +192,6 @@ typedef struct {
     int nblocks_v;
 } DSV_PARAMS;
 
-extern void dsv_get_xf_dims(DSV_META *format, int *width, int *height);
-
 typedef struct {
     unsigned char *data;
     unsigned len;    
