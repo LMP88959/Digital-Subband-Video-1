@@ -33,12 +33,13 @@ dsv_mk_coefs(DSV_COEFS *c, int format, int width, int height)
     int chroma_width;
     int chroma_height;
     int c0len, c1len, c2len;
-    
+
     h_shift = DSV_FORMAT_H_SHIFT(format);
     v_shift = DSV_FORMAT_V_SHIFT(format);
     chroma_width = DSV_ROUND_SHIFT(width, h_shift);
     chroma_height = DSV_ROUND_SHIFT(height, v_shift);
-    
+    chroma_width = DSV_ROUND_POW2(chroma_width, 1);
+    chroma_height = DSV_ROUND_POW2(chroma_height, 1);
     c[0].width = width;
     c[0].height = height;
     
@@ -81,7 +82,7 @@ dsv_mk_frame(int format, int width, int height, int border)
     v_shift = DSV_FORMAT_V_SHIFT(format);
     chroma_width = DSV_ROUND_SHIFT(width, h_shift);
     chroma_height = DSV_ROUND_SHIFT(height, v_shift);
-    
+
     f->planes[0].format = format;
     f->planes[0].w = width;
     f->planes[0].h = height;
@@ -133,19 +134,19 @@ dsv_load_planar_frame(int format, void *data, int width, int height)
     f->planes[0].format = f->format;
     f->planes[0].w = width;
     f->planes[0].h = height;
-    f->planes[0].stride = DSV_ROUND_POW2(width, 2);
+    f->planes[0].stride = width;
     f->planes[0].data = data;
-    f->planes[0].len = f->planes[0].stride * DSV_ROUND_POW2(f->planes[0].h, 1);
+    f->planes[0].len = f->planes[0].stride * f->planes[0].h;
     f->planes[0].hs = 0;
     f->planes[0].vs = 0;
     
     width = DSV_ROUND_SHIFT(width, hs);
     height = DSV_ROUND_SHIFT(height, vs);
-
+    
     f->planes[1].format = f->format;
     f->planes[1].w = width;
     f->planes[1].h = height;
-    f->planes[1].stride = DSV_ROUND_POW2(f->planes[1].w, 2);
+    f->planes[1].stride = f->planes[1].w;
     f->planes[1].len = f->planes[1].stride * f->planes[1].h;
     f->planes[1].data = f->planes[0].data + f->planes[0].len;
     f->planes[1].hs = hs;
@@ -154,7 +155,7 @@ dsv_load_planar_frame(int format, void *data, int width, int height)
     f->planes[2].format = f->format;
     f->planes[2].w = width;
     f->planes[2].h = height;
-    f->planes[2].stride = DSV_ROUND_POW2(f->planes[2].w, 2);
+    f->planes[2].stride = f->planes[2].w;
     f->planes[2].len = f->planes[2].stride * f->planes[2].h;
     f->planes[2].data = f->planes[1].data + f->planes[1].len;
     f->planes[2].hs = hs;
@@ -213,6 +214,9 @@ dsv_frame_copy(DSV_FRAME *dst, DSV_FRAME *src)
             sp += cs->stride;
             dp += cd->stride;
         }
+    }
+    if (dst->border) {
+        dsv_extend_frame(dst);
     }
 }
 
