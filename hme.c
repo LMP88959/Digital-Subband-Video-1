@@ -153,7 +153,7 @@ block_intra_test(DSV_PLANE *p, DSV_PLANE *rp, int w, int h)
     uint8_t *ref = rp->data;
     uint8_t *dec = p->data;
     
-    thresh = ((w * h) / 4);
+    thresh = 0;
     for (j = 0; j < h; j++) {
         for (i = 0; i < w; i++) {
             ravg += ref[i];
