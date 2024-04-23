@@ -60,7 +60,7 @@ Sample output:
 ```
 Envel Graphics DSV v1.0 compliant codec by EMMIR 2023-2024
 usage: ./dsv1 e [options]
-sample usage: ./dsv1 -inp_video.yuv -out_compressed.dsv -w352 -h288 -fps_num24 -fps_den1 -qp85 -gop15
+sample usage: ./dsv1 e -inp_video.yuv -out_compressed.dsv -w352 -h288 -fps_num24 -fps_den1 -qp85 -gop15
 ------------------------------------------------------------
         -qp : quality percent. 85 = default
               [min = 0, max = 100]
@@ -121,7 +121,7 @@ Sample output:
 ```
 Envel Graphics DSV v1.0 compliant codec by EMMIR 2023-2024
 usage: ./dsv1 d [options]
-sample usage: ./dsv1 -inp_video.dsv -out_decompressed.yuv -out420p
+sample usage: ./dsv1 d -inp_video.dsv -out_decompressed.yuv -out420p
 ------------------------------------------------------------
         -out420p : convert video to 4:2:0 chroma subsampling before saving output. 0 = default
               [min = 0, max = 1]
