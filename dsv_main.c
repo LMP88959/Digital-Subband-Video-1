@@ -204,7 +204,7 @@ usage_encoder(void)
     
     printf(DRV_HEADER);
     printf("usage: %s e [options]\n", p);
-    printf("sample usage: %s -inp_video.yuv -out_compressed.dsv -w352 -h288 -fps_num24 -fps_den1 -qp85 -gop15\n", p);
+    printf("sample usage: %s e -inp_video.yuv -out_compressed.dsv -w352 -h288 -fps_num24 -fps_den1 -qp85 -gop15\n", p);
     print_params(enc_params);
 }
 
@@ -215,7 +215,7 @@ usage_decoder(void)
     
     printf(DRV_HEADER);
     printf("usage: %s d [options]\n", p);
-    printf("sample usage: %s -inp_video.dsv -out_decompressed.yuv -out420p\n", p);
+    printf("sample usage: %s d -inp_video.dsv -out_decompressed.yuv -out420p\n", p);
     print_params(dec_params);
 }
 
