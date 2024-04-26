@@ -233,14 +233,3 @@ dsv_movec_pred(DSV_MV *vecs, DSV_PARAMS *p, int x, int y, int *px, int *py)
     *px = pred(vx[0], vx[1], vx[2]);
     *py = pred(vy[0], vy[1], vy[2]);
 }
-
-extern void
-dsv_init(void)
-{
-    static int init = 0;
-    
-    if (init) {
-        return;
-    }
-    init = 1;
-}
