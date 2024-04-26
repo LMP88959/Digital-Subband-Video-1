@@ -203,8 +203,6 @@ extern void dsv_buf_free(DSV_BUF *buffer);
 extern int dsv_yuv_write(FILE *out, int fno, DSV_PLANE *fd);
 extern int dsv_yuv_read(FILE *in, int fno, uint8_t *o, int w, int h, int subsamp);
 
-extern void dsv_init(void);
-
 #ifndef DSV_MEMORY_STATS
 #define DSV_MEMORY_STATS 1
 #endif
