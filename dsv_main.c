@@ -762,7 +762,6 @@ main(int argc, char **argv)
     int ret;
     
     progname = argv[0];
-    dsv_init();
     
     ret = split_paths(argc, argv);
     
