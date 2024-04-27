@@ -4,6 +4,14 @@
 DSV1 is a simple video codec using wavelets and block-based motion compensation.  
 It is comparable to MPEG-1/MPEG-2 in terms of efficiency and quality.
 
+## NOTE there are two versions in this repository
+There is an independent, header-only version of DSV1:
+```
+dsv1.h
+```
+The rest of the repository contains the same code but in an organized, traditional .h/.c fashion.
+
+
 ## DSV Features (refer to PDF in repo for more detail)
 
 - compression using multiresolution subband analysis instead of DCT  
