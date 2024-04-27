@@ -23,7 +23,6 @@ extern "C" {
 
 #include <stdlib.h>
 #include <string.h>
-#include <stdarg.h>
 #include <limits.h>
 
 #include "dsv.h"
