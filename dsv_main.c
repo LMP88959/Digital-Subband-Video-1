@@ -137,7 +137,7 @@ static struct PARAM enc_params[] = {
     { "scd", 1, 0, 1, NULL,
             "do scene change detection. 1 = default" },
     { "scdelta", 4, 0, 256, NULL,
-            "scene change average luma delta threshold. Units are 8-bit luma.4 = default" },
+            "scene change average luma delta threshold. Units are 8-bit luma. 4 = default" },
     { NULL, 0, 0, 0, NULL, "" }
 };
 
