@@ -132,7 +132,7 @@ sample usage: ./dsv1 e -inp_video.yuv -out_compressed.dsv -w352 -h288 -fps_num24
               [min = 0, max = 2147483647]
         -scd : do scene change detection. 1 = default
               [min = 0, max = 1]
-        -scdelta : scene change average luma delta threshold. Units are 8-bit luma.4 = default
+        -scdelta : scene change average luma delta threshold. Units are 8-bit luma. 4 = default
               [min = 0, max = 256]
         -inp_ : REQUIRED! input file
         -out_ : REQUIRED! output file
