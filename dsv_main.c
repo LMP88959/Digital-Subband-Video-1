@@ -130,13 +130,13 @@ static struct PARAM enc_params[] = {
             "minimum quality percent. 1 = default" },
     { "maxqp", DSV_QUALITY_PERCENT(100), 0, 100, pct_to_qual,
             "maximum quality percent. 100 = default" },
-    { "minqp_I", DSV_QUALITY_PERCENT(5), 0, 100, pct_to_qual,
+    { "iminqp", DSV_QUALITY_PERCENT(5), 0, 100, pct_to_qual,
             "minimum quality percent for intra frames. 5 = default" },
     { "stabref", 0, 0, INT_MAX, NULL,
             "period (in # of frames) to refresh the stability block tracking. 0 = auto-determine. 0 = default" },
     { "scd", 1, 0, 1, NULL,
             "do scene change detection. 1 = default" },
-    { "scdelta", 4, 0, 256, NULL,
+    { "schdelta", 4, 0, 256, NULL,
             "scene change average luma delta threshold. Units are 8-bit luma. 4 = default" },
     { NULL, 0, 0, 0, NULL, "" }
 };
