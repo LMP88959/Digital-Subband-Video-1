@@ -462,7 +462,7 @@ encode(void)
 
     enc.gop = get_optval(enc_params, "gop");
 
-    enc.scene_change_delta = get_optval(enc_params, "scdelta");
+    enc.scene_change_delta = get_optval(enc_params, "schdelta");
     enc.do_scd = get_optval(enc_params, "scd");
     enc.intra_pct_thresh = get_optval(enc_params, "ipct");
     enc.quality = get_optval(enc_params, "qp");
@@ -479,7 +479,7 @@ encode(void)
     enc.max_q_step = get_optval(enc_params, "maxqstep");
     enc.min_quality = get_optval(enc_params, "minqp");
     enc.max_quality = get_optval(enc_params, "maxqp");
-    enc.min_I_frame_quality = get_optval(enc_params, "minqp_I");
+    enc.min_I_frame_quality = get_optval(enc_params, "iminqp");
 
     enc.rc_high_motion_nudge = get_optval(enc_params, "rc_hmnudge");
     enc.pyramid_levels = get_optval(enc_params, "pyrlevels");
