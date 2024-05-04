@@ -669,8 +669,8 @@ dsv_memory_report(void)
 extern int
 dsv_yuv_write(FILE *out, int fno, DSV_PLANE *p)
 {
-    unsigned lens[3];
-    unsigned offset, framesz;
+    size_t lens[3];
+    size_t offset, framesz;
     int c, y;
     
     if (out == NULL) {
@@ -702,8 +702,7 @@ dsv_yuv_write(FILE *out, int fno, DSV_PLANE *p)
 extern int
 dsv_yuv_read(FILE *in, int fno, uint8_t *o, int width, int height, int subsamp)
 {
-    unsigned npix, offset, chrsz = 0;
-    unsigned offsets[3];
+    size_t npix, offset, chrsz = 0;
     
     if (in == NULL) {
         return -1;
@@ -712,8 +711,6 @@ dsv_yuv_read(FILE *in, int fno, uint8_t *o, int width, int height, int subsamp)
         return -1;
     }
     npix = width * height;
-    offsets[0] = 0;
-    offsets[1] = npix;
     switch (subsamp) {
         case DSV_SUBSAMP_444:
             offset = fno * npix * 3;
@@ -733,7 +730,6 @@ dsv_yuv_read(FILE *in, int fno, uint8_t *o, int width, int height, int subsamp)
             DSV_ASSERT(0);
             break;
     }
-    offsets[2] = (npix + chrsz);
 
     if (fseek(in, offset, SEEK_SET)) {
         return -1;
@@ -743,6 +739,7 @@ dsv_yuv_read(FILE *in, int fno, uint8_t *o, int width, int height, int subsamp)
     }
     return 0;
 }
+
 #endif
 
 extern void
