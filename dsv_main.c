@@ -301,6 +301,7 @@ get_param(char *argv)
     struct PARAM *params;
     
     if (*p != '-') {
+        printf("strange argument: %s\n", p);
         return 0;
     }
 
