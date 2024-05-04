@@ -360,6 +360,7 @@ init_params(int argc, char **argv)
     int i;
 
     if (argc == 1) {
+        printf("not enough args!\n");
         usage();
         return 0;
     }
