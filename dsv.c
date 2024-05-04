@@ -98,8 +98,8 @@ dsv_memory_report(void)
 extern int
 dsv_yuv_write(FILE *out, int fno, DSV_PLANE *p)
 {
-    unsigned lens[3];
-    unsigned offset, framesz;
+    size_t lens[3];
+    size_t offset, framesz;
     int c, y;
     
     if (out == NULL) {
@@ -131,7 +131,7 @@ dsv_yuv_write(FILE *out, int fno, DSV_PLANE *p)
 extern int
 dsv_yuv_read(FILE *in, int fno, uint8_t *o, int width, int height, int subsamp)
 {
-    unsigned npix, offset, chrsz = 0;
+    size_t npix, offset, chrsz = 0;
     
     if (in == NULL) {
         return -1;
