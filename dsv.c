@@ -132,7 +132,6 @@ extern int
 dsv_yuv_read(FILE *in, int fno, uint8_t *o, int width, int height, int subsamp)
 {
     unsigned npix, offset, chrsz = 0;
-    unsigned offsets[3];
     
     if (in == NULL) {
         return -1;
@@ -141,8 +140,6 @@ dsv_yuv_read(FILE *in, int fno, uint8_t *o, int width, int height, int subsamp)
         return -1;
     }
     npix = width * height;
-    offsets[0] = 0;
-    offsets[1] = npix;
     switch (subsamp) {
         case DSV_SUBSAMP_444:
             offset = fno * npix * 3;
@@ -162,7 +159,6 @@ dsv_yuv_read(FILE *in, int fno, uint8_t *o, int width, int height, int subsamp)
             DSV_ASSERT(0);
             break;
     }
-    offsets[2] = (npix + chrsz);
 
     if (fseek(in, offset, SEEK_SET)) {
         return -1;
