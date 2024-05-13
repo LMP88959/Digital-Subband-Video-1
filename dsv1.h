@@ -2578,7 +2578,7 @@ intra_metric(uint8_t *a, int as, uint8_t *b, int bs, int w, int h)
 static int
 invalid_block(DSV_FRAME *f, int x, int y, int sx, int sy)
 {
-    int b = f->border;
+    int b = f->border * DSV_FRAME_BORDER;
     return x < -b || y < -b || x + sx > f->width + b || y + sy > f->height + b;
 }
 
