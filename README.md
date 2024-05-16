@@ -118,7 +118,7 @@ sample usage: ./dsv1 e -inp_video.yuv -out_compressed.dsv -w352 -h288 -fps_num24
               [min = 0, max = 1]
         -rc_hmnudge : nudge the rate control loop a bit harder in high motion scenes. 1 = default
               [min = 0, max = 1]
-        -kbps : ONLY FOR ABR RATE CONTORL: bitrate in kilobits per second. 0 = auto-estimate needed bitrate for desired qp. 0 = default
+        -kbps : ONLY FOR ABR RATE CONTROL: bitrate in kilobits per second. 0 = auto-estimate needed bitrate for desired qp. 0 = default
               [min = 0, max = 2147483647]
         -maxqstep : max quality step for ABR, absolute quant amount. 10 = default (equivalent to 0.5%)
               [min = 1, max = 2047]
