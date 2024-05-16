@@ -123,7 +123,7 @@ static struct PARAM enc_params[] = {
     { "rc_hmnudge", 1, 0, 1, NULL,
             "nudge the rate control loop a bit harder in high motion scenes. 1 = default" },
     { "kbps", AUTO_BITRATE, AUTO_BITRATE, INT_MAX, to_bps,
-            "ONLY FOR ABR RATE CONTORL: bitrate in kilobits per second. 0 = auto-estimate needed bitrate for desired qp. 0 = default" },
+            "ONLY FOR ABR RATE CONTROL: bitrate in kilobits per second. 0 = auto-estimate needed bitrate for desired qp. 0 = default" },
     { "maxqstep", DSV_MAX_QUALITY * 1 / 200, 1, DSV_MAX_QUALITY, NULL,
             "max quality step for ABR, absolute quant amount. 10 = default (equivalent to 0.5%)" },
     { "minqp", DSV_QUALITY_PERCENT(1), 0, 100, pct_to_qual,
