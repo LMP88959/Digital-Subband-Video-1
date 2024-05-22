@@ -433,6 +433,7 @@ encode(void)
     int maxframe;
     FILE *inpfile;
     unsigned frno = 0;
+    int nfr;
 
     w = get_optval(enc_params, "w");
     h = get_optval(enc_params, "h");
@@ -488,7 +489,12 @@ encode(void)
     }
 
     frno = get_optval(enc_params, "sfr");
-    maxframe = frno + get_optval(enc_params, "nfr");
+    nfr = get_optval(enc_params, "nfr");
+    if (nfr > 0) {
+        maxframe = frno + nfr;
+    } else {
+        maxframe = -1;
+    }
 
     DSV_INFO(("starting encoder"));
     dsv_enc_start(&enc);
