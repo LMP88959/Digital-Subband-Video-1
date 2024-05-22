@@ -447,7 +447,6 @@ encode(void)
     md.aspect_num = get_optval(enc_params, "aspect_num");
     md.aspect_den = get_optval(enc_params, "aspect_den");
     
-    maxframe = get_optval(enc_params, "nfr");
     inpfile = fopen(opts.inp, "rb");
     if (inpfile == NULL) {
         printf("error opening input file %s\n", opts.inp);
@@ -489,7 +488,8 @@ encode(void)
     }
 
     frno = get_optval(enc_params, "sfr");
-    
+    maxframe = frno + get_optval(enc_params, "nfr");
+
     DSV_INFO(("starting encoder"));
     dsv_enc_start(&enc);
     run = 1;
