@@ -1,7 +1,7 @@
 # Digital-Subband-Video-1
 ------
 
-DSV1 is a simple video codec using wavelets and block-based motion compensation.  
+DSV1 is a simple video codec using wavelets and block-based motion compensation.
 It is comparable to MPEG-1/MPEG-2 in terms of efficiency and quality.
 
 ## NOTE there are two versions in this repository
@@ -32,34 +32,34 @@ https://github.com/LMP88959/Digital-Subband-Video-1/assets/109979235/86889d5a-12
 
 ## DSV Features (refer to PDF in repo for more detail)
 
-- compression using multiresolution subband analysis instead of DCT  
-   - also known as a wavelet transform  
-- half-pixel motion compensation  
-- 4:1:1, 4:2:0, 4:2:2 and 4:4:4 chroma subsampling formats  
-- adaptive quantization  
-- intra and inter frames with variable length closed GOP  
-   - no bidirectional prediction (also known as B-frames). Only forward prediction with previous picture as reference  
-- only form of entropy coding is interleaved exponential-golomb coding for simplicity  
+- compression using multiresolution subband analysis instead of DCT
+   - also known as a wavelet transform
+- half-pixel motion compensation
+- 4:1:1, 4:2:0, 4:2:2 and 4:4:4 chroma subsampling formats
+- adaptive quantization
+- intra and inter frames with variable length closed GOP
+   - no bidirectional prediction (also known as B-frames). Only forward prediction with previous picture as reference
+- only form of entropy coding is interleaved exponential-golomb coding for simplicity
 - wider range of compression than MPEG-1/2, support for lower bitrates
 
 --- for more detailed information please refer to the informal specification document (DSV1_spec.pdf) in the repository.
 
 ## Encoder Features (specific to this implementation of the DSV spec)
 
-- single pass average bitrate (ABR) or constant rate factor (CRF) rate control  
-- simple Human Visual System (HVS) based intra block mode determination  
-- simple scene change detection using change in average luma  
-- hierarchical motion estimation  
-- stability tracking to provide better adaptive quantization  
-- written to be compatible with C89  
+- single pass average bitrate (ABR) or constant rate factor (CRF) rate control
+- simple Human Visual System (HVS) based intra block mode determination
+- simple scene change detection using change in average luma
+- hierarchical motion estimation
+- stability tracking to provide better adaptive quantization
+- written to be compatible with C89
 
 --- for more detailed information please refer to the encoder information document (DSV1_encoder.pdf) in the repository.
 
 ## Limitations
 
-- no built-in interlacing support  
-- only 8 bits of depth per component supported  
-- frame sizes must be divisible by two  
+- no built-in interlacing support
+- only 8 bits of depth per component supported
+- frame sizes must be divisible by two
 
 This code follows my self-imposed restrictions:
 
@@ -72,6 +72,8 @@ This code follows my self-imposed restrictions:
 
 ## Compiling
 
+### C Compiler
+
 All you need is a C compiler.
 
 In the root directory of the project (with all the .h and .c files):
@@ -79,6 +81,33 @@ In the root directory of the project (with all the .h and .c files):
 cc -O3 -o dsv1 *.c
 ```
 
+### Zig Build System
+
+The `dsv1` binary can be built using the Zig build system, which is especially useful for cross-compilation. Building requires Zig version ≥`0.13.0`.
+
+0. Ensure you have Zig & git installed.
+
+1. Clone this repo & enter the cloned directory:
+
+```bash
+git clone https://github.com/gianni-rosato/Digital-Subband-Video-1.git
+cd Digital-Subband-Video-1
+```
+
+2. Build the binary with Zig:
+
+```bash
+zig build
+```
+> Note: If you'd like to specify a different build target from your host OS/architecture, simply supply the target flag. Example: `zig build -Dtarget=x86_64-linux-gnu`
+
+3. Find the build binary in `zig-out/bin`. You can install it like so:
+
+```bash
+sudo cp zig-out/bin/dsv1 /usr/local/bin
+```
+
+Now, you should be all set to use `dsv1`.
 
 ## Running Encoder
 
@@ -217,4 +246,3 @@ DSV1 at 1100kbps (created using ```./dsv1 e -y -v -inp_husky_cif.yuv -out_saved.
 
 
 https://github.com/LMP88959/Digital-Subband-Video-1/assets/109979235/df4509f1-60dc-4a55-b362-76c426819765
-
