@@ -421,7 +421,7 @@ refine_level(DSV_HME *hme, int level)
         for (i = 0; i < nxb; i += step) {
 #define FPEL_NSEARCH 9 /* search points for full-pel search */
             static int xf[FPEL_NSEARCH] = { 0,  1, -1, 0,  0, -1,  1, -1, 1 };
-            static int yf[FPEL_NSEARCH] = { 0,  0,  0, 1, -1 - 1, -1,  1, 1 };
+            static int yf[FPEL_NSEARCH] = { 0,  0,  0, 1, -1, -1, -1,  1, 1 };
 #define HPEL_NSEARCH 8 /* search points for half-pel search */
             static int xh[HPEL_NSEARCH] = { 1, -1, 0,  0, -1,  1, -1, 1 };
             static int yh[HPEL_NSEARCH] = { 0,  0, 1, -1, -1, -1,  1, 1 };
